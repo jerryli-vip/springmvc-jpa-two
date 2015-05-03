@@ -4,16 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Department New</title>
+<title>Department Edit</title>
 </head>
 <body>
-	<form name="dpetNewForm" action="create" method="POST">
+	<form name="dpetEditForm" action="edit" method="POST">
 		<table width="600" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td colspan="2"><jsp:include page="head.jsp" /></td>
 			</tr>
 			<tr>
-				<td width="80%"><font size="5">Department Creation</font></td>
+				<td width="80%"><font size="5">Department Edit</font></td>
 			</tr>
 			<tr>
 				<td>
@@ -29,7 +29,7 @@
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
 							<td width="140">Department Name</td>
-							<td><input type="text" name="deptName"></td>
+							<td><input type="text" name="deptName" value="${dept.deptName}"></td>
 						</tr>
 						<tr height="10">
 							<td></td>
@@ -37,7 +37,7 @@
 						</tr>
 						<tr>
 							<td>Location</td>
-							<td><input type="text" name="location"></td>
+							<td><input type="text" name="location"  value="${dept.loc}"></td>
 						</tr>
 						<tr height="10">
 							<td></td>

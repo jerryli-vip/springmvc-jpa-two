@@ -7,7 +7,8 @@
 <title>Exception page</title>
 </head>
 <body>
-	<font size="6" color="red">Exception: ${expMessage}</font>
+	<font size="6" color="red">Exception occurred:</font><br>
+	<font size="5" color="red">${expMessage}</font>
 	<br>
 	<br>
 	<br>

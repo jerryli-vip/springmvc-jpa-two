@@ -9,7 +9,7 @@ public interface DepartmentService {
 
 	public void save(Department dept) throws SampleException;
 
-	public void delete(Department dept) throws SampleException;
+	public void delete(Integer deptno) throws SampleException;
 
 	public Department findById(Integer deptno) throws SampleException;
 

@@ -14,7 +14,7 @@ import com.pactera.web.model.Department;
 import com.pactera.web.service.DepartmentService;
 
 @Controller
-public class DepartmentController extends BaseController{
+public class DepartmentController extends BaseController {
 
 	Logger log = Logger.getLogger(DepartmentController.class);
 
@@ -22,7 +22,7 @@ public class DepartmentController extends BaseController{
 	DepartmentService departmentService;
 
 	@RequestMapping(value = "list")
-	public ModelAndView sayHello() throws Exception {
+	public ModelAndView list() throws Exception {
 		final String METHOD_NAME = "list";
 		log.debug(METHOD_NAME + " begin");
 
@@ -60,7 +60,54 @@ public class DepartmentController extends BaseController{
 		dept.setLoc(location);
 		departmentService.save(dept);
 
-		mav = new ModelAndView("deptList");
+		mav = list();
+
+		log.debug(METHOD_NAME + " end");
+		return mav;
+	}
+
+	@RequestMapping(value = "showEdit")
+	public ModelAndView showEdit(@RequestParam Integer deptno) throws Exception {
+		final String METHOD_NAME = "showEdit";
+		log.debug(METHOD_NAME + " begin");
+
+		ModelAndView mav = new ModelAndView("deptEdit");
+
+		Department dept = departmentService.findById(deptno);
+
+		mav.addObject("dept", dept);
+
+		log.debug(METHOD_NAME + " end");
+		return mav;
+	}
+
+	@RequestMapping(value = "edit")
+	public ModelAndView edit(@RequestParam String deptName, String location) throws Exception {
+		final String METHOD_NAME = "edit";
+		log.debug(METHOD_NAME + " begin");
+
+		ModelAndView mav = null;
+		Department dept = new Department();
+		dept.setDeptName(deptName);
+		dept.setLoc(location);
+		departmentService.save(dept);
+
+		mav = list();
+
+		log.debug(METHOD_NAME + " end");
+		return mav;
+	}
+
+	@RequestMapping(value = "delete")
+	public ModelAndView delete(@RequestParam Integer deptno) throws Exception {
+		final String METHOD_NAME = "delete";
+		log.debug(METHOD_NAME + " begin");
+
+		ModelAndView mav = null;
+
+		departmentService.delete(deptno);
+
+		mav = list();
 
 		log.debug(METHOD_NAME + " end");
 		return mav;

@@ -38,12 +38,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Transactional(rollbackFor = SampleException.class)
-	public void delete(Department dept) throws SampleException {
+	public void delete(Integer deptno) throws SampleException {
 		final String METHOD_NAME = "delete";
 
 		log.debug(METHOD_NAME + " begin");
 
-		departmentDAO.delete(dept);
+		departmentDAO.delete(deptno);
 
 		log.debug(METHOD_NAME + " end");
 	}

@@ -3,7 +3,9 @@ package com.pactera.web.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -11,7 +13,8 @@ import javax.persistence.Table;
 public class Department {
 
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "deptNoSeq")
+	@SequenceGenerator(name = "deptNoSeq", sequenceName = "DEPT_NO_SEQ")
 	private Integer deptno;
 
 	@Column(name = "dname")

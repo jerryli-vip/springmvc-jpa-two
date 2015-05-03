@@ -5,9 +5,18 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Department List</title>
+<script>
+function deleteDept(deptno) {
+	if(window.confirm("Are you sure to delete this object?")){
+		var form = document.getElementById("deptListForm");
+		form.action = "delete?deptno="+deptno;
+		form.submit();
+	}
+}
+</script>
 </head>
 <body>
-	<form name="newDeptList" action="">
+	<form id="deptListForm" method="post" action="">
 		<table width="600" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td><jsp:include page="head.jsp" /></td>
@@ -54,9 +63,9 @@
 									<td>${dept.deptName}</td>
 									<td>${dept.loc}</td>
 									<td align="center">
-										<a href="edit?deptno=${dept.deptno}">edit</a>
+										<a href="showEdit?deptno=${dept.deptno}">edit</a>
 										/
-										<a href="delete?deptno=${dept.deptno}">delete</a>
+										<a href="#" onclick="deleteDept(${dept.deptno})">delete</a>
 									</td>
 								</tr>
 							</c:forEach>
