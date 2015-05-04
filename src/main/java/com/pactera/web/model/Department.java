@@ -20,7 +20,7 @@ public class Department {
 	@Column(name = "dname")
 	private String deptName;
 
-	private String loc;
+	private String location;
 
 	public Integer getDeptno() {
 		return deptno;
@@ -38,12 +38,12 @@ public class Department {
 		this.deptName = deptName;
 	}
 
-	public String getLoc() {
-		return loc;
+	public String getLocation() {
+		return location;
 	}
 
-	public void setLoc(String loc) {
-		this.loc = loc;
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 }

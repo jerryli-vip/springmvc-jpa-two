@@ -14,6 +14,7 @@ import com.pactera.web.model.Department;
 import com.pactera.web.service.DepartmentService;
 
 @Controller
+@RequestMapping("dept")
 public class DepartmentController extends BaseController {
 
 	Logger log = Logger.getLogger(DepartmentController.class);
@@ -28,8 +29,7 @@ public class DepartmentController extends BaseController {
 
 		ModelAndView mav = new ModelAndView("deptList");
 
-		List<Department> deptList;
-		deptList = departmentService.findAll();
+		List<Department> deptList = departmentService.findAll();
 		if (!CollectionUtils.isEmpty(deptList)) {
 			mav.addObject("deptList", deptList);
 		}
@@ -57,10 +57,11 @@ public class DepartmentController extends BaseController {
 		ModelAndView mav = null;
 		Department dept = new Department();
 		dept.setDeptName(deptName);
-		dept.setLoc(location);
+		dept.setLocation(location);
 		departmentService.save(dept);
 
-		mav = list();
+		mav = new ModelAndView("redirect:list");
+		// mav = list();
 
 		log.debug(METHOD_NAME + " end");
 		return mav;
@@ -82,17 +83,16 @@ public class DepartmentController extends BaseController {
 	}
 
 	@RequestMapping(value = "edit")
-	public ModelAndView edit(@RequestParam String deptName, String location) throws Exception {
+	public ModelAndView edit(Department dept) throws Exception {
 		final String METHOD_NAME = "edit";
 		log.debug(METHOD_NAME + " begin");
 
 		ModelAndView mav = null;
-		Department dept = new Department();
-		dept.setDeptName(deptName);
-		dept.setLoc(location);
+
 		departmentService.save(dept);
 
-		mav = list();
+		mav = new ModelAndView("redirect:list");
+		// mav = list();
 
 		log.debug(METHOD_NAME + " end");
 		return mav;
@@ -107,7 +107,8 @@ public class DepartmentController extends BaseController {
 
 		departmentService.delete(deptno);
 
-		mav = list();
+		mav = new ModelAndView("redirect:list");
+		// mav = list();
 
 		log.debug(METHOD_NAME + " end");
 		return mav;

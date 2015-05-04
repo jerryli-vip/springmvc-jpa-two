@@ -4,18 +4,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Department New</title>
+<title>Hello Input</title>
 </head>
 <body>
-	<form name="dpetNewForm" action="create" method="POST">
-		<%-- <input type="hidden" name="token" value="${token}" />
-		<input type="hidden" name="redirectPath" value="dept/list" /> --%>
+	<form name="helloInputForm" action="sayHello" method="POST">
 		<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
 			<tr>
-				<td colspan="2"><jsp:include page="head.jsp" /></td>
+				<td><jsp:include page="head.jsp" /></td>
 			</tr>
 			<tr>
-				<td width="80%"><font size="5">Department Creation</font></td>
+				<td width="80%"><font size="5">Hello Input</font></td>
 			</tr>
 			<tr>
 				<td>
@@ -30,16 +28,8 @@
 				<td>
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td width="140">Department Name</td>
-							<td><input type="text" name="deptName"></td>
-						</tr>
-						<tr height="10">
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Location</td>
-							<td><input type="text" name="location"></td>
+							<td width="140">Name</td>
+							<td><input type="text" name="name">(Default value : Jerry)</td>
 						</tr>
 						<tr height="10">
 							<td></td>
@@ -53,7 +43,7 @@
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><jsp:include page="foot.jsp" /></td>
+				<td><jsp:include page="foot.jsp" /></td>
 			</tr>
 		</table>
 	</form>

@@ -17,7 +17,7 @@ function deleteDept(deptno) {
 </head>
 <body>
 	<form id="deptListForm" method="post" action="">
-		<table width="600" border="0" cellpadding="0" cellspacing="0">
+		<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td><jsp:include page="head.jsp" /></td>
 			</tr>
@@ -35,12 +35,12 @@ function deleteDept(deptno) {
 				<td>
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td height="5"></td>
+							<td height="10"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
-			<tr>
+			<tr height="80%" valign="top">
 				<td>
 					<table width="100%" border="1" cellpadding="0" cellspacing="0">
 						<tr>
@@ -61,7 +61,7 @@ function deleteDept(deptno) {
 								<tr>
 									<td>${dept.deptno}</td>
 									<td>${dept.deptName}</td>
-									<td>${dept.loc}</td>
+									<td>${dept.location}</td>
 									<td align="center">
 										<a href="showEdit?deptno=${dept.deptno}">edit</a>
 										/

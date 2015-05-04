@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form name="dpetEditForm" action="edit" method="POST">
-		<table width="600" border="0" cellpadding="0" cellspacing="0">
+		<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td colspan="2"><jsp:include page="head.jsp" /></td>
 			</tr>
@@ -19,16 +19,26 @@
 				<td>
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td height="5"></td>
+							<td height="10"></td>
 						</tr>
 					</table>
 				</td>
 			</tr>
-			<tr>
+			<tr height="80%" valign="top">
 				<td>
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td width="140">Department Name</td>
+							<td width="140">Department No</td>
+							<td>${dept.deptno}
+								<input type="hidden" name="deptno" value="${dept.deptno}">
+							</td>
+						</tr>
+						<tr height="10">
+							<td></td>
+							<td></td>
+						</tr>
+						<tr>
+							<td>Department Name</td>
 							<td><input type="text" name="deptName" value="${dept.deptName}"></td>
 						</tr>
 						<tr height="10">
@@ -37,7 +47,7 @@
 						</tr>
 						<tr>
 							<td>Location</td>
-							<td><input type="text" name="location"  value="${dept.loc}"></td>
+							<td><input type="text" name="location"  value="${dept.location}"></td>
 						</tr>
 						<tr height="10">
 							<td></td>
@@ -45,7 +55,7 @@
 						</tr>
 						<tr>
 							<td><input type="submit" value="Save"></td>
-							<td><input type="reset" value="Reset"></td>
+							<td><input type="button" onclick="javascript:history.back();" value="Back"></td>
 						</tr>
 					</table>
 				</td>

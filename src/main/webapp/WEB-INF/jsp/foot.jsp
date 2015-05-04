@@ -9,13 +9,13 @@
 <body>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
-			<td height="30"></td>
+			<td height="30">&nbsp;</td>
 		</tr>
 		<tr>
-			<td><a href="#">Pactera</a></td>
+			<td>Copyright©2015 reserved</td>
 		</tr>
 		<tr>
-			<td height="10"></td>
+			<td height="10">&nbsp;</td>
 		</tr>
 	</table>
 </body>

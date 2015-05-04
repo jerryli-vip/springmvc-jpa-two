@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pactera.web.dao.DepartmentDAO;
-import com.pactera.web.exception.SampleException;
+import com.pactera.web.exception.ServiceException;
 import com.pactera.web.model.Department;
 import com.pactera.web.service.DepartmentService;
 
@@ -26,8 +26,8 @@ public class DepartmentServiceImpl implements DepartmentService {
 		this.departmentDAO = departmentDAO;
 	}
 
-	@Transactional(rollbackFor = SampleException.class)
-	public void save(Department dept) throws SampleException {
+	@Transactional(rollbackFor = ServiceException.class)
+	public void save(Department dept) throws ServiceException {
 		final String METHOD_NAME = "save";
 
 		log.debug(METHOD_NAME + " begin");
@@ -37,8 +37,19 @@ public class DepartmentServiceImpl implements DepartmentService {
 		log.debug(METHOD_NAME + " end");
 	}
 
-	@Transactional(rollbackFor = SampleException.class)
-	public void delete(Integer deptno) throws SampleException {
+	@Transactional(rollbackFor = ServiceException.class)
+	public void update(Department dept) throws ServiceException {
+		final String METHOD_NAME = "update";
+
+		log.debug(METHOD_NAME + " begin");
+
+		departmentDAO.save(dept);
+
+		log.debug(METHOD_NAME + " end");
+	}
+
+	@Transactional(rollbackFor = ServiceException.class)
+	public void delete(Integer deptno) throws ServiceException {
 		final String METHOD_NAME = "delete";
 
 		log.debug(METHOD_NAME + " begin");
@@ -48,7 +59,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		log.debug(METHOD_NAME + " end");
 	}
 
-	public Department findById(Integer deptno) throws SampleException {
+	public Department findById(Integer deptno) throws ServiceException {
 		final String METHOD_NAME = "findById";
 		log.debug(METHOD_NAME + " begin");
 		log.debug(METHOD_NAME + " deptno : " + deptno);
@@ -60,7 +71,7 @@ public class DepartmentServiceImpl implements DepartmentService {
 		return dept;
 	}
 
-	public List<Department> findAll() throws SampleException {
+	public List<Department> findAll() throws ServiceException {
 		final String METHOD_NAME = "findById";
 		log.debug(METHOD_NAME + " begin");
 

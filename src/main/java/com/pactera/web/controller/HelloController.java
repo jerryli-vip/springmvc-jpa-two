@@ -11,6 +11,18 @@ public class HelloController {
 
 	Logger log = Logger.getLogger(HelloController.class);
 
+	@RequestMapping(value = "hello")
+	public ModelAndView hello() {
+		final String METHOD_NAME = "hello";
+		log.debug(METHOD_NAME + " begin");
+
+		ModelAndView mav = new ModelAndView("helloInput");
+
+		log.debug(METHOD_NAME + " end");
+
+		return mav;
+	}
+
 	@RequestMapping(value = "sayHello")
 	public ModelAndView sayHello(String name) {
 		final String METHOD_NAME = "sayHello";
@@ -20,11 +32,13 @@ public class HelloController {
 
 		ModelAndView mav = new ModelAndView("hello");
 
+		String value = null;
 		if (!StringUtils.isEmpty(name)) {
-			mav.addObject("hello", "Hello, " + name + "!");
+			value = "Hi, " + name + "! Welcome to the Spring MVC world!";
+		} else {
+			value = "Hello, Jerry! Welcome to the Spring MVC world!";
 		}
-
-		// test
+		mav.addObject("message", value);
 
 		log.debug(METHOD_NAME + " end");
 
