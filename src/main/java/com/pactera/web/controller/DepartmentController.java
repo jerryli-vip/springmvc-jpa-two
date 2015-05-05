@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.pactera.web.common.Token;
 import com.pactera.web.model.Department;
 import com.pactera.web.service.DepartmentService;
 
@@ -38,6 +39,7 @@ public class DepartmentController extends BaseController {
 		return mav;
 	}
 
+	@Token(save = true)
 	@RequestMapping(value = "showCreate")
 	public ModelAndView showCreate() throws Exception {
 		final String METHOD_NAME = "showCreate";
@@ -49,6 +51,7 @@ public class DepartmentController extends BaseController {
 		return mav;
 	}
 
+	@Token(remove = true)
 	@RequestMapping(value = "create")
 	public ModelAndView create(@RequestParam String deptName, String location) throws Exception {
 		final String METHOD_NAME = "create";
@@ -60,8 +63,7 @@ public class DepartmentController extends BaseController {
 		dept.setLocation(location);
 		departmentService.save(dept);
 
-		mav = new ModelAndView("redirect:list");
-		// mav = list();
+		mav = list();
 
 		log.debug(METHOD_NAME + " end");
 		return mav;
@@ -92,7 +94,6 @@ public class DepartmentController extends BaseController {
 		departmentService.save(dept);
 
 		mav = new ModelAndView("redirect:list");
-		// mav = list();
 
 		log.debug(METHOD_NAME + " end");
 		return mav;
@@ -108,7 +109,6 @@ public class DepartmentController extends BaseController {
 		departmentService.delete(deptno);
 
 		mav = new ModelAndView("redirect:list");
-		// mav = list();
 
 		log.debug(METHOD_NAME + " end");
 		return mav;

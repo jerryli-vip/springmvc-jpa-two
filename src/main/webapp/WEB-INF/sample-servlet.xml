@@ -32,6 +32,14 @@
 
 
 	<!-- <bean id="exceptionResolver" class="com.pactera.web.exception.MyHandlerExceptionResolver"/> -->
-	
+
+
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/dept/showCreate" />
+			<mvc:mapping path="/dept/create" />
+			<bean class="com.pactera.web.common.TokenInterceptor" />
+		</mvc:interceptor>
+	</mvc:interceptors>
 
 </beans>

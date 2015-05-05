@@ -8,8 +8,7 @@
 </head>
 <body>
 	<form name="dpetNewForm" action="create" method="POST">
-		<%-- <input type="hidden" name="token" value="${token}" />
-		<input type="hidden" name="redirectPath" value="dept/list" /> --%>
+		<input type="hidden" name="token" value="${token}" />
 		<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
 			<tr>
 				<td colspan="2"><jsp:include page="head.jsp" /></td>

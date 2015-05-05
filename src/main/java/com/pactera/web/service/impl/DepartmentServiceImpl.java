@@ -66,13 +66,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		Department dept = departmentDAO.getOne(deptno);
 
-		log.debug(METHOD_NAME + " dept = null : " + (dept == null));
 		log.debug(METHOD_NAME + " end");
 		return dept;
 	}
 
 	public List<Department> findAll() throws ServiceException {
-		final String METHOD_NAME = "findById";
+		final String METHOD_NAME = "findAll";
 		log.debug(METHOD_NAME + " begin");
 
 		List<Department> deptList = departmentDAO.findAll();
