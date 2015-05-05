@@ -9,7 +9,7 @@
 <body>
 	<form name="dpetNewForm" action="create" method="POST">
 		<input type="hidden" name="token" value="${token}" />
-		<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
+		<table width="960px" height="600px" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td colspan="2"><jsp:include page="head.jsp" /></td>
 			</tr>

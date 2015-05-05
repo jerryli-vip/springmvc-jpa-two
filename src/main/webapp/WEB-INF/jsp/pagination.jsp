@@ -12,7 +12,7 @@ function goPage(){
 </script>
 </head>
 <body>
-<table width="600" border="0" cellpadding="0" cellspacing="0">
+<table width="100%" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td height="10" colspan="14"></td>
 	</tr>

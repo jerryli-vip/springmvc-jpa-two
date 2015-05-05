@@ -7,12 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-public class HelloController {
+public class HelloController extends BaseController {
 
 	Logger log = Logger.getLogger(HelloController.class);
 
 	@RequestMapping(value = "hello")
-	public ModelAndView hello() {
+	public ModelAndView hello() throws Exception {
 		final String METHOD_NAME = "hello";
 		log.debug(METHOD_NAME + " begin");
 
@@ -24,7 +24,7 @@ public class HelloController {
 	}
 
 	@RequestMapping(value = "sayHello")
-	public ModelAndView sayHello(String name) {
+	public ModelAndView sayHello(String name) throws Exception {
 		final String METHOD_NAME = "sayHello";
 		log.debug(METHOD_NAME + " begin");
 

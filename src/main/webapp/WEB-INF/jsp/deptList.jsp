@@ -17,7 +17,7 @@ function deleteDept(deptno) {
 </head>
 <body>
 	<form id="deptListForm" method="post" action="">
-		<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
+		<table width="960px" height="600px" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td><jsp:include page="head.jsp" /></td>
 			</tr>

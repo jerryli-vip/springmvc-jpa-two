@@ -8,7 +8,7 @@
 </head>
 <body>
 	<form name="dpetEditForm" action="edit" method="POST">
-		<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
+		<table width="960px" height="600px" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td colspan="2"><jsp:include page="head.jsp" /></td>
 			</tr>

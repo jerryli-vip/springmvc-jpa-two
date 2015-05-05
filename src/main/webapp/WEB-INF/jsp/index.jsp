@@ -7,7 +7,7 @@
 <title>index</title>
 </head>
 <body>
-	<table width="600" height="600" border="0" cellpadding="0" cellspacing="0">
+	<table width="960px" height="600px" border="0" cellpadding="0" cellspacing="0" align="center">
 		<tr>
 			<td>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
