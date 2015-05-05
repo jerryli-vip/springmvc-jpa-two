@@ -6,9 +6,14 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.pactera.web.common.Pagination;
 import com.pactera.web.dao.DepartmentDAO;
 import com.pactera.web.exception.ServiceException;
 import com.pactera.web.model.Department;
@@ -32,7 +37,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		log.debug(METHOD_NAME + " begin");
 
-		departmentDAO.save(dept);
+		try {
+			departmentDAO.save(dept);
+		} catch (Exception e) {
+			log.error("Error when save dept", e);
+			throw new ServiceException(e.getMessage());
+		}
 
 		log.debug(METHOD_NAME + " end");
 	}
@@ -43,7 +53,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		log.debug(METHOD_NAME + " begin");
 
-		departmentDAO.save(dept);
+		try {
+			departmentDAO.save(dept);
+		} catch (Exception e) {
+			log.error("Error when update dept", e);
+			throw new ServiceException(e.getMessage());
+		}
 
 		log.debug(METHOD_NAME + " end");
 	}
@@ -54,7 +69,12 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 		log.debug(METHOD_NAME + " begin");
 
-		departmentDAO.delete(deptno);
+		try {
+			departmentDAO.delete(deptno);
+		} catch (Exception e) {
+			log.error("Error when delete dept : " + deptno, e);
+			throw new ServiceException(e.getMessage());
+		}
 
 		log.debug(METHOD_NAME + " end");
 	}
@@ -64,19 +84,44 @@ public class DepartmentServiceImpl implements DepartmentService {
 		log.debug(METHOD_NAME + " begin");
 		log.debug(METHOD_NAME + " deptno : " + deptno);
 
-		Department dept = departmentDAO.getOne(deptno);
+		Department dept = null;
+		try {
+			dept = departmentDAO.getOne(deptno);
+		} catch (Exception e) {
+			log.error("Error when find dept by id : " + deptno, e);
+			throw new ServiceException(e.getMessage());
+		}
 
 		log.debug(METHOD_NAME + " end");
 		return dept;
 	}
 
-	public List<Department> findAll() throws ServiceException {
+	public List<Department> findAll(Pagination pagination) throws ServiceException {
 		final String METHOD_NAME = "findAll";
 		log.debug(METHOD_NAME + " begin");
 
-		List<Department> deptList = departmentDAO.findAll();
+		List<Department> deptList = null;
+		try {
+			// 1. no sort
+			// deptList = departmentDAO.findAll();
 
-		log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(deptList) ? 0 : deptList.size()));
+			// 2. sort
+			Sort sort = new Sort("deptno");
+			// deptList = departmentDAO.findAll(sort);
+
+			// 3. pagination
+			pagination.setRecordCount(Integer.valueOf(String.valueOf(departmentDAO.count())));
+			Pageable page = new PageRequest(pagination.getPageNo() - 1, pagination.getPageSize(), sort);
+			Page<Department> pageDept = departmentDAO.findAll(page);
+
+			deptList = pageDept.getContent();
+
+			log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(deptList) ? 0 : deptList.size()));
+		} catch (Exception e) {
+			log.error("Error when find all dept", e);
+			throw new ServiceException(e.getMessage());
+		}
+
 		log.debug(METHOD_NAME + " end");
 		return deptList;
 	}

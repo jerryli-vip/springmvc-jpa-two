@@ -70,6 +70,9 @@ function deleteDept(deptno) {
 								</tr>
 							</c:forEach>
 						</c:if>
+						<tr>
+							<td colspan="4"><jsp:include page="pagination.jsp" /></td>
+						</tr>
 					</table>
 				</td>
 			</tr>
