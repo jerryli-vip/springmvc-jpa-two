@@ -11,29 +11,35 @@
 		<tr>
 			<td><jsp:include page="head.jsp" /></td>
 		</tr>
-		<tr>
-			<td width="80%"><font size="5">Hello Output</font></td>
-		</tr>
-		<tr>
-			<td>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td height="10"></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
 		<tr height="80%" valign="top">
 			<td>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td width="140"><font color="red">${message}</font></td>
+						<td>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td><font size="5">Hello Output</font></td>
+								</tr>
+								<tr>
+									<td height="10"></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
-						<td height="50"></td>
-					</tr>
-					<tr>
-						<td><a href="javascript:history.go(-1);">Back</a></td>
+						<td>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="140"><font color="red">${message}</font></td>
+								</tr>
+								<tr>
+									<td height="50"></td>
+								</tr>
+								<tr>
+									<td><a href="javascript:history.go(-1);">Back</a></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 				</table>
 			</td>

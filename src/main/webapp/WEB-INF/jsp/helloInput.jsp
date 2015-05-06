@@ -12,32 +12,38 @@
 			<tr>
 				<td><jsp:include page="head.jsp" /></td>
 			</tr>
-			<tr>
-				<td width="80%"><font size="5">Hello Input</font></td>
-			</tr>
-			<tr>
-				<td>
-					<table width="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-							<td height="10"></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
 			<tr height="80%" valign="top">
 				<td>
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td width="140">Name</td>
-							<td><input type="text" name="name">(Default value : Jerry)</td>
-						</tr>
-						<tr height="10">
-							<td></td>
-							<td></td>
+							<td>
+								<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><font size="5">Hello Input</font></td>
+									</tr>
+									<tr>
+										<td height="10"></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 						<tr>
-							<td><input type="submit" value="Save"></td>
-							<td><input type="button" onclick="javascript:history.back();" value="Back"></td>
+							<td>
+								<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td width="140">Name</td>
+										<td><input type="text" name="name">(Default value : Jerry)</td>
+									</tr>
+									<tr height="10">
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><input type="submit" value="Save"></td>
+										<td><input type="button" onclick="javascript:history.back();" value="Back"></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 					</table>
 				</td>

@@ -1,7 +1,7 @@
 package com.pactera.web.common;
 
 public class Pagination {
-	private static final int pageSzie = 5;
+	private int pageSize = 10;
 	private int recordCount = 0;
 	private int pageNo = 0;
 	private int pageCount = 0;
@@ -32,7 +32,7 @@ public class Pagination {
 //	}
 
 	public int getPageCount() {
-		return recordCount % pageSzie > 0 ? recordCount / pageSzie + 1 : recordCount / pageSzie;
+		return recordCount % pageSize > 0 ? recordCount / pageSize + 1 : recordCount / pageSize;
 	}
 
 	public void setPageCount(int pageCount) {
@@ -48,11 +48,15 @@ public class Pagination {
 	}
 
 	public int getPageSize() {
-		return pageSzie;
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
 	}
 
 	public String toString() {
-		return "[recordCount = " + recordCount + ", pageCount = " + pageCount + ", pageSzie = " + pageSzie
+		return "[recordCount = " + recordCount + ", pageCount = " + pageCount + ", pageSzie = " + pageSize
 				+ ", pageNo = " + pageNo + "]";
 	}
 }

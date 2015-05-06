@@ -12,61 +12,61 @@ function goPage(){
 </script>
 </head>
 <body>
-<table width="100%" border="0" cellpadding="0" cellspacing="0">
-	<tr>
-		<td height="10" colspan="14"></td>
-	</tr>
-	<tr>
-		<td align="right">
-			Current : ${pagination.pageNo}/${pagination.pageCount}
-		</td>
-		<td width="20">&nbsp;</td>
-		<td width="30">
-			<c:choose>
-				<c:when test="${pagination.pageNo == 1 }">First</c:when>
-				<c:otherwise><a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=1">First</a></c:otherwise>
-			</c:choose>
-		</td>
-		<td width="10">&nbsp;</td>
-		<td width="50">
-			<c:choose>
-				<c:when test="${pagination.pageNo <= 1}">Previous</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=${pagination.pageNo - 1 }">Previous</a>
-				</c:otherwise>
-			</c:choose>
-		</td>
-		<td width="10">&nbsp;</td>
-		<td width="30">
-			<c:choose>
-				<c:when test="${pagination.pageNo >= pagination.pageCount}">Next</c:when>
-				<c:otherwise>
-					<a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=${pagination.pageNo + 1}">Next</a>
-				</c:otherwise>
-			</c:choose>
-		</td>
-		<td width="10">&nbsp;</td>
-		<td width="30">
-			<c:choose>
-				<c:when test="${pagination.pageNo == pagination.pageCount }">Tail</c:when>
-				<c:otherwise><a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=${pagination.pageCount}">Tail</a></c:otherwise>
-			</c:choose>
-		</td>
-		<td width="20">&nbsp;</td>
-		<td width="60" align="right">
-			Go page
-		</td>
-		<td width="5">&nbsp;</td>
-		<td width="40">
-			<input type="text" id="pageNo" style="width:40px"/>
-		</td>
-		<td width="50" align="center">
-			<input type="button" onclick="goPage()" value="Go"/>
-		</td>
-	</tr>
-	<tr>
-		<td height="5" colspan="14"></td>
-	</tr>
-</table>
+	<table width="100%" border="0" cellpadding="0" cellspacing="0">
+		<tr>
+			<td height="10" colspan="14"></td>
+		</tr>
+		<tr>
+			<td align="right">
+				Current : ${pagination.pageNo}/${pagination.pageCount}
+			</td>
+			<td width="20">&nbsp;</td>
+			<td width="30">
+				<c:choose>
+					<c:when test="${pagination.pageNo == 1 }">First</c:when>
+					<c:otherwise><a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=1">First</a></c:otherwise>
+				</c:choose>
+			</td>
+			<td width="10">&nbsp;</td>
+			<td width="50">
+				<c:choose>
+					<c:when test="${pagination.pageNo <= 1}">Previous</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=${pagination.pageNo - 1 }">Previous</a>
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<td width="10">&nbsp;</td>
+			<td width="30">
+				<c:choose>
+					<c:when test="${pagination.pageNo >= pagination.pageCount}">Next</c:when>
+					<c:otherwise>
+						<a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=${pagination.pageNo + 1}">Next</a>
+					</c:otherwise>
+				</c:choose>
+			</td>
+			<td width="10">&nbsp;</td>
+			<td width="30">
+				<c:choose>
+					<c:when test="${pagination.pageNo == pagination.pageCount }">Tail</c:when>
+					<c:otherwise><a href="${pageContext.request.contextPath}/${paginationURL}?pageNo=${pagination.pageCount}">Tail</a></c:otherwise>
+				</c:choose>
+			</td>
+			<td width="20">&nbsp;</td>
+			<td width="60" align="right">
+				Go page
+			</td>
+			<td width="5">&nbsp;</td>
+			<td width="40">
+				<input type="text" id="pageNo" style="width:40px"/>
+			</td>
+			<td width="50" align="center">
+				<input type="button" onclick="goPage()" value="Go"/>
+			</td>
+		</tr>
+		<tr>
+			<td height="5" colspan="14"></td>
+		</tr>
+	</table>
 </body>
 </html>

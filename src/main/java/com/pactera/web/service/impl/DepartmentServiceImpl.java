@@ -6,6 +6,7 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -26,6 +27,10 @@ public class DepartmentServiceImpl implements DepartmentService {
 
 	@Resource
 	DepartmentDAO departmentDAO;
+
+	// @Value("${page.size}")
+	@Value("#{configProperties['page.size']}")
+	private String pageSize;
 
 	public void setDepartmentDAO(DepartmentDAO departmentDAO) {
 		this.departmentDAO = departmentDAO;
@@ -110,9 +115,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 			// deptList = departmentDAO.findAll(sort);
 
 			// 3. pagination
+			Integer pagesize = 0;
+			try {
+				pagesize = Integer.valueOf(pageSize);
+				pagination.setPageSize(pagesize);
+			} catch (Exception e) {
+				log.info("Error when set page size", e);
+			}
 			pagination.setRecordCount(Integer.valueOf(String.valueOf(departmentDAO.count())));
-			Pageable page = new PageRequest(pagination.getPageNo() - 1, pagination.getPageSize(), sort);
-			Page<Department> pageDept = departmentDAO.findAll(page);
+			final int page = pagination.getPageNo() > 0 ? pagination.getPageNo() - 1 : 0;
+			Pageable pageable = new PageRequest(page, pagination.getPageSize(), sort);
+			Page<Department> pageDept = departmentDAO.findAll(pageable);
 
 			deptList = pageDept.getContent();
 

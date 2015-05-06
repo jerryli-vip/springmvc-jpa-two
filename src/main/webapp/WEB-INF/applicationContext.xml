@@ -14,13 +14,19 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		">
 
-	<bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-	    <property name="locations">
-	      <list>
-	          <value>classpath:resources.properties</value>
-	      </list>
-	    </property>
+	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="properties" ref="configProperties" />
 	</bean>
+	
+	<bean id="configProperties"
+		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+		<property name="locations">
+			<list>
+				<value>classpath:resources.properties</value>
+			</list>
+		</property>
+	</bean>
+	
 
 	<!-- data source and transaction -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -60,5 +66,5 @@
 
 	<jpa:repositories base-package="com.pactera.web.dao" entity-manager-factory-ref="entityManagerFactory"
 		transaction-manager-ref="txManager" />
-		
+	
 </beans>

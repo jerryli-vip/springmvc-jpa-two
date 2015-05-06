@@ -12,7 +12,7 @@
 			<td width="40%"><font size="6" color="green">Hello World!</font></td>
 			<td width="40%">&nbsp;</td>
 			<td width="10%">&nbsp;</td>
-			<td width="10%"><a href="/springmvc-jpa">Home</a></td>
+			<td width="10%"><a href="${pageContext.request.contextPath}/">Home</a></td>
 		</tr>
 		<tr>
 			<td colspan="4" height="10">&nbsp;</td>

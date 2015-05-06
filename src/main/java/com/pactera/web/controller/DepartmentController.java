@@ -2,12 +2,20 @@ package com.pactera.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -16,9 +24,10 @@ import com.pactera.web.common.Token;
 import com.pactera.web.exception.ServiceException;
 import com.pactera.web.model.Department;
 import com.pactera.web.service.DepartmentService;
+import com.pactera.web.validation.DepartmentValidator;
 
 @Controller
-@RequestMapping("dept")
+@RequestMapping(value = "dept")
 public class DepartmentController extends BaseController {
 
 	Logger log = Logger.getLogger(DepartmentController.class);
@@ -27,6 +36,14 @@ public class DepartmentController extends BaseController {
 
 	@Autowired
 	DepartmentService departmentService;
+
+	@Autowired
+	DepartmentValidator deptValidator;
+
+	@InitBinder
+	public void initBinder(WebDataBinder binder) {
+		binder.setValidator(deptValidator);
+	}
 
 	@RequestMapping(value = "list")
 	public ModelAndView list(String pageNo) throws ServiceException {
@@ -51,26 +68,39 @@ public class DepartmentController extends BaseController {
 
 	@Token(save = true)
 	@RequestMapping(value = "showCreate")
-	public ModelAndView showCreate() throws ServiceException {
+	public ModelAndView showCreate(HttpServletRequest request) throws ServiceException {
 		final String METHOD_NAME = "showCreate";
 		log.debug(METHOD_NAME + " begin");
 
 		ModelAndView mav = new ModelAndView("deptNew");
+
+		Department dept = new Department();
+		mav.addObject("department", dept);
+
+		request.getSession(false).setAttribute("reSubmitWhenError", null);
 
 		log.debug(METHOD_NAME + " end");
 		return mav;
 	}
 
 	@Token(remove = true)
-	@RequestMapping(value = "create")
-	public ModelAndView create(@RequestParam String deptName, String location) throws ServiceException {
+	@RequestMapping(value = "create", method = RequestMethod.POST)
+	public ModelAndView create(@Valid @ModelAttribute Department dept, BindingResult result, HttpServletRequest request)
+			throws ServiceException {
 		final String METHOD_NAME = "create";
 		log.debug(METHOD_NAME + " begin");
 
 		ModelAndView mav = null;
-		Department dept = new Department();
-		dept.setDeptName(deptName);
-		dept.setLocation(location);
+		if (result.hasErrors()) {
+			mav = new ModelAndView("deptNew");
+			mav.addObject("department", dept);
+
+			request.getSession(false).setAttribute("reSubmitWhenError", Boolean.TRUE);
+			log.debug(METHOD_NAME + " end caused by input error");
+
+			return mav;
+		}
+
 		departmentService.save(dept);
 
 		mav = list("0");
@@ -88,18 +118,28 @@ public class DepartmentController extends BaseController {
 
 		Department dept = departmentService.findById(deptno);
 
-		mav.addObject("dept", dept);
+		mav.addObject("department", dept);
 
 		log.debug(METHOD_NAME + " end");
 		return mav;
 	}
 
 	@RequestMapping(value = "edit")
-	public ModelAndView edit(Department dept) throws ServiceException {
+	public ModelAndView edit(@Valid @ModelAttribute Department dept, BindingResult result, HttpServletRequest request)
+			throws ServiceException {
 		final String METHOD_NAME = "edit";
 		log.debug(METHOD_NAME + " begin");
 
 		ModelAndView mav = null;
+
+		if (result.hasErrors()) {
+			mav = new ModelAndView("deptEdit");
+			mav.addObject("department", dept);
+
+			log.debug(METHOD_NAME + " end caused by input error");
+
+			return mav;
+		}
 
 		departmentService.save(dept);
 

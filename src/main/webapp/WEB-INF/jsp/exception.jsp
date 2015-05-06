@@ -11,35 +11,43 @@
 		<tr>
 			<td><jsp:include page="head.jsp" /></td>
 		</tr>
-		<tr>
-			<td>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td><font size="6" color="red">Exception occurred:</font></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td height="10"></td>
-					</tr>
-				</table>
-			</td>
-		</tr>
 		<tr height="80%" valign="top">
 			<td>
 				<table width="100%" border="0" cellpadding="0" cellspacing="0">
 					<tr>
-						<td><font size="5" color="red">${expMessage}</font></td>
+						<td>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>
+										<table width="100%" border="0" cellpadding="0" cellspacing="0">
+											<tr>
+												<td><font size="6" color="red">Exception occurred:</font></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<td height="10"></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 					<tr>
-						<td height="50"></td>
-					</tr>
-					<tr>
-						<td><a href="javascript:history.go(-1);">Back</a></td>
+						<td>
+							<table width="100%" border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td style="word-wrap:break-word;word-break:break-all;">
+										<font size="5" color="red">${expMessage}</font>
+									</td>
+								</tr>
+								<tr>
+									<td height="50"></td>
+								</tr>
+								<tr>
+									<td><a href="javascript:history.go(-1);">Back</a></td>
+								</tr>
+							</table>
+						</td>
 					</tr>
 				</table>
 			</td>

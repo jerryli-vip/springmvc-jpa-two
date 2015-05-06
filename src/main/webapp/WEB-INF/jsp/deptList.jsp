@@ -21,57 +21,65 @@ function deleteDept(deptno) {
 			<tr>
 				<td><jsp:include page="head.jsp" /></td>
 			</tr>
-			<tr>
-				<td>
-					<table width="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-							<td width="90%"><font size="5">Department List</font></td>
-							<td width="10%"><a href="showCreate">New</a></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<table width="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-							<td height="10"></td>
-						</tr>
-					</table>
-				</td>
-			</tr>
 			<tr height="80%" valign="top">
 				<td>
-					<table width="100%" border="1" cellpadding="0" cellspacing="0">
+					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<th width="20%">DEPT NO</th>
-							<th width="30%">DEPT NAME</th>
-							<th width="30%">LOCATION</th>
-							<th width="20%">ACTION</th>
+							<td>
+								<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>
+											<table width="100%" border="0" cellpadding="0" cellspacing="0">
+												<tr>
+													<td width="90%"><font size="5">Department List</font></td>
+													<td width="10%"><a href="showCreate">New</a></td>
+												</tr>
+											</table>
+										</td>
+									</tr>
+									<tr>
+										<td height="10"></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
-						
-						<c:if test="${deptList eq null}">
 						<tr>
-							<td colspan="4">No record found.</td>
-						</tr>
-						</c:if>
-						
-						<c:if test="${deptList != null}">
-							<c:forEach var="dept" items="${deptList}">
-								<tr>
-									<td>${dept.deptno}</td>
-									<td>${dept.deptName}</td>
-									<td>${dept.location}</td>
-									<td align="center">
-										<a href="showEdit?deptno=${dept.deptno}">edit</a>
-										/
-										<a href="#" onclick="deleteDept(${dept.deptno})">delete</a>
-									</td>
-								</tr>
-							</c:forEach>
-						</c:if>
-						<tr>
-							<td colspan="4"><jsp:include page="pagination.jsp" /></td>
+							<td>
+								<table width="100%" border="1" cellpadding="0" cellspacing="0">
+									<tr>
+										<th width="20%">DEPT NO</th>
+										<th width="30%">DEPT NAME</th>
+										<th width="30%">LOCATION</th>
+										<th width="20%">ACTION</th>
+									</tr>
+									
+									<c:if test="${deptList eq null}">
+									<tr>
+										<td colspan="4">No record found.</td>
+									</tr>
+									</c:if>
+									
+									<c:if test="${deptList != null}">
+										<c:forEach var="dept" items="${deptList}">
+											<tr>
+												<td>${dept.deptno}</td>
+												<td>${dept.deptName}</td>
+												<td>${dept.location}</td>
+												<td align="center">
+													<a href="showEdit?deptno=${dept.deptno}">edit</a>
+													/
+													<a href="#" onclick="deleteDept(${dept.deptno})">delete</a>
+												</td>
+											</tr>
+										</c:forEach>
+									</c:if>
+									<c:if test="${pagination.pageCount > 0}">
+										<tr>
+											<td colspan="4"><jsp:include page="pagination.jsp" /></td>
+										</tr>
+									</c:if>
+								</table>
+							</td>
 						</tr>
 					</table>
 				</td>

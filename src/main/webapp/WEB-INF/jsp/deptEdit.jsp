@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -7,63 +8,75 @@
 <title>Department Edit</title>
 </head>
 <body>
-	<form name="dpetEditForm" action="edit" method="POST">
+	<form:form commandName="department" action="edit" method="POST">
 		<table width="960px" height="600px" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
-				<td colspan="2"><jsp:include page="head.jsp" /></td>
-			</tr>
-			<tr>
-				<td width="80%"><font size="5">Department Edit</font></td>
-			</tr>
-			<tr>
-				<td>
-					<table width="100%" border="0" cellpadding="0" cellspacing="0">
-						<tr>
-							<td height="10"></td>
-						</tr>
-					</table>
-				</td>
+				<td><jsp:include page="head.jsp" /></td>
 			</tr>
 			<tr height="80%" valign="top">
 				<td>
 					<table width="100%" border="0" cellpadding="0" cellspacing="0">
 						<tr>
-							<td width="140">Department No</td>
-							<td>${dept.deptno}
-								<input type="hidden" name="deptno" value="${dept.deptno}">
+							<td>
+								<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><font size="5">Department Edit</font></td>
+									</tr>
+									<tr>
+										<td height="10"></td>
+									</tr>
+								</table>
 							</td>
 						</tr>
-						<tr height="10">
-							<td></td>
-							<td></td>
-						</tr>
 						<tr>
-							<td>Department Name</td>
-							<td><input type="text" name="deptName" value="${dept.deptName}"></td>
-						</tr>
-						<tr height="10">
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td>Location</td>
-							<td><input type="text" name="location"  value="${dept.location}"></td>
-						</tr>
-						<tr height="10">
-							<td></td>
-							<td></td>
-						</tr>
-						<tr>
-							<td><input type="submit" value="Save"></td>
-							<td><input type="button" onclick="javascript:history.back();" value="Back"></td>
+							<td>
+								<table width="100%" border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td width="140">Department No</td>
+										<td>${department.deptno}
+											<input type="hidden" name="deptno" value="${department.deptno}">
+										</td>
+									</tr>
+									<tr height="10">
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Department Name</td>
+										<td>
+											<form:input path="deptName" value="${department.deptName}"/>&nbsp;<font color="red">*</font>&nbsp;
+											<form:errors path="deptName" cssStyle="color: red;" />
+										</td>
+									</tr>
+									<tr height="10">
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Location</td>
+										<td>
+											<form:input path="location" value="${department.location}" />&nbsp;<font color="red">*</font>&nbsp;
+											<form:errors path="location" cssStyle="color: red;" />
+										</td>
+									</tr>
+									<tr height="10">
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td><input type="submit" value="Save"></td>
+										<td><input type="button" onclick="javascript:history.back();" value="Back"></td>
+									</tr>
+								</table>
+							</td>
 						</tr>
 					</table>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2"><jsp:include page="foot.jsp" /></td>
+				<td><jsp:include page="foot.jsp" /></td>
 			</tr>
 		</table>
-	</form>
+	</form:form>
 </body>
 </html>
