@@ -38,6 +38,8 @@
 												<form:option value="">Please select</form:option>
 												<form:options items="${deptList}" itemLabel="deptName" itemValue="deptno"/>
 											</form:select>
+											&nbsp;<font color="red">*</font>&nbsp;
+											<form:errors path="dept.deptno" cssStyle="color: red;" />
 										</td>
 									</tr>
 									<tr height="10">

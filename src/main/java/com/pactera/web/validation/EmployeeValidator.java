@@ -33,7 +33,12 @@ public class EmployeeValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "hireDateStr", "hire.date.empty");
 		ValidationUtils.rejectIfEmpty(errors, "salary", "salary.empty");
 
-		Pattern datePattern = Pattern.compile("[1-9]{4}-[0-9][1-9]-[0-3][0-9]");
+		Integer deptno = emp.getDept().getDeptno();
+		if (deptno == null) {
+			ValidationUtils.rejectIfEmpty(errors, "dept.deptno", "dept.deptno.empty");
+		}
+
+		Pattern datePattern = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");
 		if (!StringUtils.isEmpty(hireDateStr) && !datePattern.matcher(hireDateStr).find()) {
 			errors.rejectValue("hireDateStr", "hire.date.format.error");
 		} else {
