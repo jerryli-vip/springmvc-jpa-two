@@ -35,14 +35,14 @@ public class DepartmentController extends BaseController {
 	private final String paginationURL = "dept/list";
 
 	@Autowired
-	DepartmentService departmentService;
+	DepartmentService service;
 
 	@Autowired
-	DepartmentValidator deptValidator;
+	DepartmentValidator validator;
 
 	@InitBinder
 	public void initBinder(WebDataBinder binder) {
-		binder.setValidator(deptValidator);
+		binder.setValidator(validator);
 	}
 
 	@RequestMapping(value = "list")
@@ -55,7 +55,7 @@ public class DepartmentController extends BaseController {
 		Pagination pagination = new Pagination();
 		pagination.setPageNo(StringUtils.isNumeric(pageNo) ? new Integer(pageNo) : new Integer(1));
 
-		List<Department> deptList = departmentService.findAll(pagination);
+		List<Department> deptList = service.findAll(pagination);
 		if (!CollectionUtils.isEmpty(deptList)) {
 			mav.addObject("deptList", deptList);
 			mav.addObject("pagination", pagination);
@@ -101,7 +101,7 @@ public class DepartmentController extends BaseController {
 			return mav;
 		}
 
-		departmentService.save(dept);
+		service.save(dept);
 
 		mav = list("0");
 
@@ -116,7 +116,7 @@ public class DepartmentController extends BaseController {
 
 		ModelAndView mav = new ModelAndView("deptEdit");
 
-		Department dept = departmentService.findById(deptno);
+		Department dept = service.findById(deptno);
 
 		mav.addObject("department", dept);
 
@@ -141,7 +141,7 @@ public class DepartmentController extends BaseController {
 			return mav;
 		}
 
-		departmentService.save(dept);
+		service.save(dept);
 
 		mav = new ModelAndView("redirect:list");
 
@@ -156,7 +156,7 @@ public class DepartmentController extends BaseController {
 
 		ModelAndView mav = null;
 
-		departmentService.delete(deptno);
+		service.delete(deptno);
 
 		mav = new ModelAndView("redirect:list");
 

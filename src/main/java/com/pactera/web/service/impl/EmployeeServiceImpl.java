@@ -15,30 +15,30 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.pactera.web.common.Pagination;
-import com.pactera.web.dao.DepartmentDAO;
+import com.pactera.web.dao.EmployeeDAO;
 import com.pactera.web.exception.ServiceException;
-import com.pactera.web.model.Department;
-import com.pactera.web.service.DepartmentService;
+import com.pactera.web.model.Employee;
+import com.pactera.web.service.EmployeeService;
 
 @Service
-public class DepartmentServiceImpl implements DepartmentService {
+public class EmployeeServiceImpl implements EmployeeService {
 
-	Logger log = Logger.getLogger(DepartmentServiceImpl.class);
+	Logger log = Logger.getLogger(EmployeeServiceImpl.class);
 
 	@Resource
-	DepartmentDAO dao;
+	EmployeeDAO dao;
 
 	@Value("#{configProperties['page.size']}")
 	private String pageSize;
 
 	@Transactional(rollbackFor = ServiceException.class)
-	public void save(Department dept) throws ServiceException {
+	public void save(Employee emp) throws ServiceException {
 		final String METHOD_NAME = "save";
 
 		log.debug(METHOD_NAME + " begin");
 
 		try {
-			dao.save(dept);
+			dao.save(emp);
 		} catch (Exception e) {
 			log.error("Error when save", e);
 			throw new ServiceException(e.getMessage());
@@ -48,13 +48,13 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Transactional(rollbackFor = ServiceException.class)
-	public void update(Department dept) throws ServiceException {
+	public void update(Employee emp) throws ServiceException {
 		final String METHOD_NAME = "update";
 
 		log.debug(METHOD_NAME + " begin");
 
 		try {
-			dao.save(dept);
+			dao.save(emp);
 		} catch (Exception e) {
 			log.error("Error when update", e);
 			throw new ServiceException(e.getMessage());
@@ -64,68 +64,50 @@ public class DepartmentServiceImpl implements DepartmentService {
 	}
 
 	@Transactional(rollbackFor = ServiceException.class)
-	public void delete(Integer deptno) throws ServiceException {
+	public void delete(Integer empno) throws ServiceException {
 		final String METHOD_NAME = "delete";
 
 		log.debug(METHOD_NAME + " begin");
 
 		try {
-			dao.delete(deptno);
+			dao.delete(empno);
 		} catch (Exception e) {
-			log.error("Error when delete by id : " + deptno, e);
+			log.error("Error when delete by id : " + empno, e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
 	}
 
-	public Department findById(Integer deptno) throws ServiceException {
+	public Employee findById(Integer empno) throws ServiceException {
 		final String METHOD_NAME = "findById";
 		log.debug(METHOD_NAME + " begin");
-		log.debug(METHOD_NAME + " deptno : " + deptno);
+		log.debug(METHOD_NAME + " empno : " + empno);
 
-		Department dept = null;
+		Employee emp = null;
 		try {
-			dept = dao.getOne(deptno);
+			emp = dao.getOne(empno);
 		} catch (Exception e) {
-			log.error("Error when find by id : " + deptno, e);
+			log.error("Error when find by id : " + empno, e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
-		return dept;
+		return emp;
 	}
 
-	public List<Department> findAll() throws ServiceException {
+	public List<Employee> findAll(Pagination pagination) throws ServiceException {
 		final String METHOD_NAME = "findAll";
 		log.debug(METHOD_NAME + " begin");
 
-		List<Department> dataList = null;
-		try {
-			dataList = dao.findAll();
-
-			log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
-		} catch (Exception e) {
-			log.error("Error when find all", e);
-			throw new ServiceException(e.getMessage());
-		}
-
-		log.debug(METHOD_NAME + " end");
-		return dataList;
-	}
-
-	public List<Department> findAll(Pagination pagination) throws ServiceException {
-		final String METHOD_NAME = "findAll";
-		log.debug(METHOD_NAME + " begin");
-
-		List<Department> dataList = null;
+		List<Employee> dataList = null;
 		try {
 			// 1. no sort
-			// dataList = dao.findAll();
+			// list = dao.findAll();
 
-			// 2. with sort
-			Sort sort = new Sort("deptno");
-			// dataList = dao.findAll(sort);
+			// 2. sort
+			Sort sort = new Sort("empno");
+			// list = dao.findAll(sort);
 
 			// 3. pagination
 			Integer pagesize = 0;
@@ -138,11 +120,11 @@ public class DepartmentServiceImpl implements DepartmentService {
 			pagination.setRecordCount(Integer.valueOf(String.valueOf(dao.count())));
 			final int page = pagination.getPageNo() > 0 ? pagination.getPageNo() - 1 : 0;
 			Pageable pageable = new PageRequest(page, pagination.getPageSize(), sort);
-			Page<Department> pageRepo = dao.findAll(pageable);
+			Page<Employee> pageRepo = dao.findAll(pageable);
 
 			dataList = pageRepo.getContent();
 
-			log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
+			log.debug(METHOD_NAME + " dataList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
 		} catch (Exception e) {
 			log.error("Error when find all", e);
 			throw new ServiceException(e.getMessage());
@@ -151,4 +133,5 @@ public class DepartmentServiceImpl implements DepartmentService {
 		log.debug(METHOD_NAME + " end");
 		return dataList;
 	}
+
 }

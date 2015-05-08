@@ -14,19 +14,25 @@
 		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd
 		">
 
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+	    <property name="locations">
+	      <list>
+	          <value>classpath:resources.properties</value>
+	      </list>
+	    </property>
+	</bean> -->
+
 	<bean id="propertyConfigurer" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-	    <property name="properties" ref="configProperties" />
+		<property name="properties" ref="configProperties" />
 	</bean>
-	
-	<bean id="configProperties"
-		class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
 				<value>classpath:resources.properties</value>
+				<value>classpath:config.properties</value>
 			</list>
 		</property>
 	</bean>
-	
 
 	<!-- data source and transaction -->
 	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource">
@@ -38,11 +44,11 @@
 
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"/>
-		<property name="persistenceUnitName" value="persistenceUnit"/>
-		<property name="persistenceProvider" ref="persistenceProvider"/>
-		<property name="jpaVendorAdapter" ref="jpaVendorAdapter"/>
-		<property name="jpaDialect" ref="jpaDialect"/>
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml" />
+		<property name="persistenceUnitName" value="persistenceUnit" />
+		<property name="persistenceProvider" ref="persistenceProvider" />
+		<property name="jpaVendorAdapter" ref="jpaVendorAdapter" />
+		<property name="jpaDialect" ref="jpaDialect" />
 		<property name="jpaProperties">
 			<props>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
@@ -51,12 +57,12 @@
 			</props>
 		</property>
 	</bean>
-	<bean id="persistenceProvider" class="org.hibernate.ejb.HibernatePersistence"/>
+	<bean id="persistenceProvider" class="org.hibernate.ejb.HibernatePersistence" />
 	<bean id="jpaVendorAdapter" class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
 		<property name="generateDdl" value="false" />
 		<property name="database" value="ORACLE" />
 	</bean>
-	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect"/>
+	<bean id="jpaDialect" class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
 
 	<bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />

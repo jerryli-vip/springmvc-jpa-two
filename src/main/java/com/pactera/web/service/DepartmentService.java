@@ -16,5 +16,7 @@ public interface DepartmentService {
 
 	public Department findById(Integer deptno) throws ServiceException;
 
+	public List<Department> findAll() throws ServiceException;
+	
 	public List<Department> findAll(Pagination pagination) throws ServiceException;
 }

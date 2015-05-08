@@ -5,11 +5,10 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Department New</title>
+<title>Employee New</title>
 </head>
 <body>
-	<form:form commandName="department" action="create" method="POST">
-		<input type="hidden" name="token" value="${token}" />
+	<form:form commandName="employee" action="create" method="POST">
 		<table width="960px" height="600px" border="0" cellpadding="0" cellspacing="0" align="center">
 			<tr>
 				<td><jsp:include page="head.jsp" /></td>
@@ -21,7 +20,7 @@
 							<td>
 								<table width="100%" border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td><font size="5">Department Creation</font></td>
+										<td><font size="5">Employee Creation</font></td>
 									</tr>
 									<tr>
 										<td height="10"></td>
@@ -33,10 +32,12 @@
 							<td>
 								<table width="100%" border="0" cellpadding="0" cellspacing="0">
 									<tr>
-										<td width="140">Department Name</td>
+										<td width="140">Department</td>
 										<td>
-											<form:input path="deptName" value="${department.deptName}"/>&nbsp;<font color="red">*</font>&nbsp;
-											<form:errors path="deptName" cssStyle="color: red;" />
+											<form:select path="dept.deptno">
+												<form:option value="">Please select</form:option>
+												<form:options items="${deptList}" itemLabel="deptName" itemValue="deptno"/>
+											</form:select>
 										</td>
 									</tr>
 									<tr height="10">
@@ -44,10 +45,44 @@
 										<td></td>
 									</tr>
 									<tr>
-										<td>Location</td>
+										<td>Employee Name</td>
 										<td>
-											<form:input path="location" value="${department.location}" />&nbsp;<font color="red">*</font>&nbsp;
-											<form:errors path="location" cssStyle="color: red;" />
+											<form:input path="empName" value="${employee.empName}"/>&nbsp;<font color="red">*</font>&nbsp;
+											<form:errors path="empName" cssStyle="color: red;" />
+										</td>
+									</tr>
+									<tr height="10">
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Gender</td>
+										<td>
+											<form:radiobutton path="gender" value="M"/>Male
+											<form:radiobutton path="gender" value="F"/>Female
+										</td>
+									</tr>
+									<tr height="10">
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Hire Date</td>
+										<td>
+											<form:input path="hireDateStr" value="${employee.hireDateStr}" />&nbsp;(Formatter : yyyy-MM-dd)&nbsp;
+											<font color="red">*</font>&nbsp;
+											<form:errors path="hireDateStr" cssStyle="color: red;" />
+										</td>
+									</tr>
+									<tr height="10">
+										<td></td>
+										<td></td>
+									</tr>
+									<tr>
+										<td>Salary</td>
+										<td>
+											<form:input path="salary" value="${employee.salary}" />&nbsp;<font color="red">*</font>&nbsp;
+											<form:errors path="salary" cssStyle="color: red;" />
 										</td>
 									</tr>
 									<tr height="10">
