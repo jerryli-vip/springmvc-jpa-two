@@ -8,15 +8,13 @@ import com.pactera.web.model.Department;
 
 public interface DepartmentService {
 
-	public void save(Department dept) throws ServiceException;
-	
-	public void update(Department dept) throws ServiceException;
+	public Department save(Department dept) throws ServiceException;
 
 	public void delete(Integer deptno) throws ServiceException;
 
 	public Department findById(Integer deptno) throws ServiceException;
 
 	public List<Department> findAll() throws ServiceException;
-	
+
 	public List<Department> findAll(Pagination pagination) throws ServiceException;
 }

@@ -32,35 +32,21 @@ public class DepartmentServiceImpl implements DepartmentService {
 	private String pageSize;
 
 	@Transactional(rollbackFor = ServiceException.class)
-	public void save(Department dept) throws ServiceException {
+	public Department save(Department dept) throws ServiceException {
 		final String METHOD_NAME = "save";
 
 		log.debug(METHOD_NAME + " begin");
 
+		Department obj;
 		try {
-			dao.save(dept);
+			obj = dao.save(dept);
 		} catch (Exception e) {
 			log.error("Error when save", e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
-	}
-
-	@Transactional(rollbackFor = ServiceException.class)
-	public void update(Department dept) throws ServiceException {
-		final String METHOD_NAME = "update";
-
-		log.debug(METHOD_NAME + " begin");
-
-		try {
-			dao.save(dept);
-		} catch (Exception e) {
-			log.error("Error when update", e);
-			throw new ServiceException(e.getMessage());
-		}
-
-		log.debug(METHOD_NAME + " end");
+		return obj;
 	}
 
 	@Transactional(rollbackFor = ServiceException.class)

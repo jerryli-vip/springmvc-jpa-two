@@ -32,35 +32,21 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private String pageSize;
 
 	@Transactional(rollbackFor = ServiceException.class)
-	public void save(Employee emp) throws ServiceException {
+	public Employee save(Employee emp) throws ServiceException {
 		final String METHOD_NAME = "save";
 
 		log.debug(METHOD_NAME + " begin");
 
+		Employee obj;
 		try {
-			dao.save(emp);
+			obj = dao.save(emp);
 		} catch (Exception e) {
 			log.error("Error when save", e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
-	}
-
-	@Transactional(rollbackFor = ServiceException.class)
-	public void update(Employee emp) throws ServiceException {
-		final String METHOD_NAME = "update";
-
-		log.debug(METHOD_NAME + " begin");
-
-		try {
-			dao.save(emp);
-		} catch (Exception e) {
-			log.error("Error when update", e);
-			throw new ServiceException(e.getMessage());
-		}
-
-		log.debug(METHOD_NAME + " end");
+		return obj;
 	}
 
 	@Transactional(rollbackFor = ServiceException.class)
@@ -94,6 +80,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		log.debug(METHOD_NAME + " end");
 		return emp;
+	}
+
+	public List<Employee> findAll() throws ServiceException {
+		final String METHOD_NAME = "findAll";
+		log.debug(METHOD_NAME + " begin");
+
+		List<Employee> dataList = null;
+		try {
+			dataList = dao.findAll();
+
+			log.debug(METHOD_NAME + " dataList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
+		} catch (Exception e) {
+			log.error("Error when find all", e);
+			throw new ServiceException(e.getMessage());
+		}
+
+		log.debug(METHOD_NAME + " end");
+		return dataList;
 	}
 
 	public List<Employee> findAll(Pagination pagination) throws ServiceException {

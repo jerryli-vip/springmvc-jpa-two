@@ -8,13 +8,13 @@ import com.pactera.web.model.Employee;
 
 public interface EmployeeService {
 
-	public void save(Employee emp) throws ServiceException;
-
-	public void update(Employee emp) throws ServiceException;
+	public Employee save(Employee emp) throws ServiceException;
 
 	public void delete(Integer deptno) throws ServiceException;
 
 	public Employee findById(Integer empno) throws ServiceException;
+
+	public List<Employee> findAll() throws ServiceException;
 
 	public List<Employee> findAll(Pagination pagination) throws ServiceException;
 }

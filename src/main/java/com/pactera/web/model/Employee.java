@@ -34,6 +34,7 @@ public class Employee {
 	@Column(name = "sal")
 	private Integer salary;
 
+	// @ManyToOne(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, optional = false)
 	@ManyToOne(cascade = { CascadeType.REFRESH }, fetch = FetchType.LAZY, optional = false)
 	@JoinColumn(name = "deptno")
 	private Department dept;
