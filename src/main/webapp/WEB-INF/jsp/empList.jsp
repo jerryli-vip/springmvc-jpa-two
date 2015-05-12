@@ -68,7 +68,7 @@ function deleteEmp(empno) {
 												<td>${emp.empno}</td>
 												<td>${emp.empName}</td>
 												<td>${emp.gender eq 'M' ? 'Male' : 'Female'}</td>
-												<td>${emp.hiredate}</td>
+												<td>${emp.hireDateStr}</td>
 												<td>${emp.salary}</td>
 												<td>${emp.dept.deptName}</td>
 												<td align="center">

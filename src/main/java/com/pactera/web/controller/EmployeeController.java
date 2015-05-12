@@ -75,10 +75,13 @@ public class EmployeeController extends BaseController {
 		Pagination pagination = new Pagination();
 		pagination.setPageNo(StringUtils.isNumeric(pageNo) ? new Integer(pageNo) : new Integer(1));
 
-		List<Employee> dataList = empService.findAll(pagination);
+		List<Employee> empList = empService.findAll(pagination);
 
-		if (!CollectionUtils.isEmpty(dataList)) {
-			mav.addObject("empList", dataList);
+		if (!CollectionUtils.isEmpty(empList)) {
+			for (Employee emp : empList) {
+				emp.setHireDateStr(DateUtil.format(emp.getHiredate(), Constant.DATE_FORMAT));
+			}
+			mav.addObject("empList", empList);
 			mav.addObject("pagination", pagination);
 			mav.addObject("paginationURL", paginationURL);
 		}

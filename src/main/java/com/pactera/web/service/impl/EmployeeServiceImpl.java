@@ -86,32 +86,32 @@ public class EmployeeServiceImpl implements EmployeeService {
 		final String METHOD_NAME = "findAll";
 		log.debug(METHOD_NAME + " begin");
 
-		List<Employee> dataList = null;
+		List<Employee> empList = null;
 		try {
-			dataList = dao.findAll();
+			empList = dao.findAll();
 
-			log.debug(METHOD_NAME + " dataList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
+			log.debug(METHOD_NAME + " empList.size : " + (CollectionUtils.isEmpty(empList) ? 0 : empList.size()));
 		} catch (Exception e) {
 			log.error("Error when find all", e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
-		return dataList;
+		return empList;
 	}
 
 	public List<Employee> findAll(Pagination pagination) throws ServiceException {
 		final String METHOD_NAME = "findAll";
 		log.debug(METHOD_NAME + " begin");
 
-		List<Employee> dataList = null;
+		List<Employee> empList = null;
 		try {
 			// 1. no sort
-			// list = dao.findAll();
+			// empList = dao.findAll();
 
 			// 2. sort
 			Sort sort = new Sort("empno");
-			// list = dao.findAll(sort);
+			// empList = dao.findAll(sort);
 
 			// 3. pagination
 			Integer pagesize = 0;
@@ -126,16 +126,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 			Pageable pageable = new PageRequest(page, pagination.getPageSize(), sort);
 			Page<Employee> pageRepo = dao.findAll(pageable);
 
-			dataList = pageRepo.getContent();
+			empList = pageRepo.getContent();
 
-			log.debug(METHOD_NAME + " dataList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
+			log.debug(METHOD_NAME + " empList.size : " + (CollectionUtils.isEmpty(empList) ? 0 : empList.size()));
 		} catch (Exception e) {
 			log.error("Error when find all", e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
-		return dataList;
+		return empList;
 	}
 
 }

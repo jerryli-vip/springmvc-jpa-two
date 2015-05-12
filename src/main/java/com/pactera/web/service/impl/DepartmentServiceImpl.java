@@ -86,32 +86,33 @@ public class DepartmentServiceImpl implements DepartmentService {
 		final String METHOD_NAME = "findAll";
 		log.debug(METHOD_NAME + " begin");
 
-		List<Department> dataList = null;
+		List<Department> deptList = null;
 		try {
-			dataList = dao.findAll();
+			Sort sort = new Sort("deptName");
+			deptList = dao.findAll(sort);
 
-			log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
+			log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(deptList) ? 0 : deptList.size()));
 		} catch (Exception e) {
 			log.error("Error when find all", e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
-		return dataList;
+		return deptList;
 	}
 
 	public List<Department> findAll(Pagination pagination) throws ServiceException {
 		final String METHOD_NAME = "findAll";
 		log.debug(METHOD_NAME + " begin");
 
-		List<Department> dataList = null;
+		List<Department> deptList = null;
 		try {
 			// 1. no sort
-			// dataList = dao.findAll();
+			// deptList = dao.findAll();
 
 			// 2. with sort
 			Sort sort = new Sort("deptno");
-			// dataList = dao.findAll(sort);
+			// deptList = dao.findAll(sort);
 
 			// 3. pagination
 			Integer pagesize = 0;
@@ -126,15 +127,15 @@ public class DepartmentServiceImpl implements DepartmentService {
 			Pageable pageable = new PageRequest(page, pagination.getPageSize(), sort);
 			Page<Department> pageRepo = dao.findAll(pageable);
 
-			dataList = pageRepo.getContent();
+			deptList = pageRepo.getContent();
 
-			log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(dataList) ? 0 : dataList.size()));
+			log.debug(METHOD_NAME + " deptList.size : " + (CollectionUtils.isEmpty(deptList) ? 0 : deptList.size()));
 		} catch (Exception e) {
 			log.error("Error when find all", e);
 			throw new ServiceException(e.getMessage());
 		}
 
 		log.debug(METHOD_NAME + " end");
-		return dataList;
+		return deptList;
 	}
 }
