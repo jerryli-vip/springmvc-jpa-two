@@ -28,6 +28,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Resource
 	EmployeeDAO dao;
 
+	// @Value("${page.size}")
 	@Value("#{configProperties['page.size']}")
 	private String pageSize;
 
