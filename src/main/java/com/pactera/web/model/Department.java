@@ -1,6 +1,5 @@
 package com.pactera.web.model;
 
-import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -29,7 +28,7 @@ public class Department {
 	private String location;
 
 	@OneToMany(cascade = { CascadeType.ALL }, fetch = FetchType.LAZY, mappedBy = "dept")
-	private Set<Employee> employees = new HashSet<Employee>();
+	private Set<Employee> employees;
 
 	public Integer getDeptno() {
 		return deptno;

@@ -9,19 +9,7 @@
 <body>
 	<table width="960px" height="600px" border="0" cellpadding="0" cellspacing="0" align="center">
 		<tr>
-			<td>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td width="40%"><font size="6" color="green">Hello World!</font></td>
-						<td width="40%">&nbsp;</td>
-						<td width="10%"></td>
-						<td width="10%"><a href="/springmvc-jpa">Home</a></td>
-					</tr>
-					<tr>
-						<td colspan="4" height="10">&nbsp;</td>
-					</tr>
-				</table>
-			</td>
+			<td><jsp:include page="head.jsp" /></td>
 		</tr>
 		<tr height="80%" valign="top">
 			<td>
@@ -75,19 +63,7 @@
 			</td>
 		</tr>
 		<tr>
-			<td>
-				<table width="100%" border="0" cellpadding="0" cellspacing="0">
-					<tr>
-						<td height="30">&nbsp;</td>
-					</tr>
-					<tr>
-						<td>Copyright©2015 reserved</td>
-					</tr>
-					<tr>
-						<td height="10">&nbsp;</td>
-					</tr>
-				</table>
-			</td>
+			<td><jsp:include page="foot.jsp" /></td>
 		</tr>
 	</table>
 </body>

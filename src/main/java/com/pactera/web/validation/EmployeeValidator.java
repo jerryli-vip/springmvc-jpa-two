@@ -35,7 +35,7 @@ public class EmployeeValidator implements Validator {
 
 		Integer deptno = emp.getDept().getDeptno();
 		if (deptno == null) {
-			ValidationUtils.rejectIfEmpty(errors, "dept.deptno", "dept.deptno.empty");
+			errors.rejectValue("dept.deptno", "dept.deptno.empty");
 		}
 
 		Pattern datePattern = Pattern.compile("[0-9]{4}-[0-9]{2}-[0-9]{2}");

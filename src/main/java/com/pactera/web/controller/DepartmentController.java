@@ -35,7 +35,7 @@ public class DepartmentController extends BaseController {
 	private final String paginationURL = "dept/list";
 
 	@Autowired
-	DepartmentService service;
+	DepartmentService deptService;
 
 	@Autowired
 	DepartmentValidator validator;
@@ -55,7 +55,7 @@ public class DepartmentController extends BaseController {
 		Pagination pagination = new Pagination();
 		pagination.setPageNo(StringUtils.isNumeric(pageNo) ? new Integer(pageNo) : new Integer(1));
 
-		List<Department> deptList = service.findAll(pagination);
+		List<Department> deptList = deptService.findAll(pagination);
 		if (!CollectionUtils.isEmpty(deptList)) {
 			mav.addObject("deptList", deptList);
 			mav.addObject("pagination", pagination);
@@ -101,7 +101,7 @@ public class DepartmentController extends BaseController {
 			return mav;
 		}
 
-		service.save(dept);
+		deptService.save(dept);
 
 		mav = list("0");
 
@@ -116,7 +116,7 @@ public class DepartmentController extends BaseController {
 
 		ModelAndView mav = new ModelAndView("deptEdit");
 
-		Department dept = service.findById(deptno);
+		Department dept = deptService.findById(deptno);
 
 		mav.addObject("department", dept);
 
@@ -141,7 +141,7 @@ public class DepartmentController extends BaseController {
 			return mav;
 		}
 
-		service.save(dept);
+		deptService.save(dept);
 
 		mav = new ModelAndView("redirect:list");
 
@@ -156,7 +156,7 @@ public class DepartmentController extends BaseController {
 
 		ModelAndView mav = null;
 
-		service.delete(deptno);
+		deptService.delete(deptno);
 
 		mav = new ModelAndView("redirect:list");
 

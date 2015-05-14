@@ -9,7 +9,7 @@
 <body>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0">
 		<tr>
-			<td width="40%"><font size="6" color="green">Hello World!</font></td>
+			<td width="40%"><font size="6" color="green">Hello SpringMVC JPA!</font></td>
 			<td width="40%">&nbsp;</td>
 			<td width="10%">&nbsp;</td>
 			<td width="10%"><a href="${pageContext.request.contextPath}/">Home</a></td>
