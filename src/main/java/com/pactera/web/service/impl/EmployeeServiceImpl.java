@@ -6,7 +6,6 @@ import javax.annotation.Resource;
 
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.log4j.Logger;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,8 +28,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	EmployeeDAO dao;
 
 	// @Value("${page.size}")
-	@Value("#{configProperties['page.size']}")
-	private String pageSize;
+//	@Value("#{configProperties['page.size']}")
+//	private String pageSize;
 
 	@Transactional(rollbackFor = ServiceException.class)
 	public Employee save(Employee emp) throws ServiceException {
@@ -115,13 +114,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 			// empList = dao.findAll(sort);
 
 			// 3. pagination
-			Integer pagesize = 0;
-			try {
-				pagesize = Integer.valueOf(pageSize);
-				pagination.setPageSize(pagesize);
-			} catch (Exception e) {
-				log.info("Error when set page size", e);
-			}
+//			Integer pagesize = 0;
+//			try {
+//				pagesize = Integer.valueOf(pageSize);
+//				pagination.setPageSize(pagesize);
+//			} catch (Exception e) {
+//				log.info("Error when set page size", e);
+//			}
 			pagination.setRecordCount(Integer.valueOf(String.valueOf(dao.count())));
 			final int page = pagination.getPageNo() > 0 ? pagination.getPageNo() - 1 : 0;
 			Pageable pageable = new PageRequest(page, pagination.getPageSize(), sort);

@@ -17,7 +17,8 @@
 	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 	    <property name="locations">
 	      <list>
-	          <value>classpath:resources.properties</value>
+	          <value>classpath:config.properties</value>
+	          <value>classpath:db.properties</value>
 	      </list>
 	    </property>
 	</bean> -->
@@ -28,8 +29,8 @@
 	<bean id="configProperties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
 		<property name="locations">
 			<list>
-				<value>classpath:resources.properties</value>
 				<value>classpath:config.properties</value>
+				<value>classpath:db.properties</value>
 			</list>
 		</property>
 	</bean>
