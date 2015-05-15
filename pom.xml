@@ -2,14 +2,14 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.pactera.web</groupId>
-	<artifactId>spingmvc-jpa</artifactId>
+	<artifactId>springmvc-jpa-two</artifactId>
 	<packaging>war</packaging>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spingmvc-jpa Maven Webapp</name>
+	<name>springmvc-jpa-two Maven Webapp</name>
 	<url>http://maven.apache.org</url>
 
 	<build>
-		<finalName>spingmvc-jpa</finalName>
+		<finalName>springmvc-jpa-two</finalName>
 		<defaultGoal>compile</defaultGoal>
 		<plugins>
 			<plugin>
@@ -34,7 +34,7 @@
 		  <groupId>junit</groupId>
 		  <artifactId>junit</artifactId>
 		  <version>4.12</version>
-		  <scope>test</scope>
+		  <!-- <scope>test</scope> -->
 		</dependency>
 
 		<!-- Spring begin -->
@@ -75,6 +75,11 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.9.Final</version>
+		</dependency>
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-validator</artifactId>
+		    <version>4.3.0.Final</version>
 		</dependency>
 		<!-- Hibernate end -->
 
